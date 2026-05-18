@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #f0fdfa;
+  --color-brand-100: #ccfbf1;
+  --color-brand-500: #14b8a6;
+  --color-brand-600: #0d9488;
+  --color-brand-700: #0f766e;
+  --color-brand-800: #115e59;
+  --color-brand-900: #134e4a;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background: var(--color-brand-50);
+  color: #134e4a;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible keyboard focus for interactive controls */
+.interactive-focus:focus {
+  outline: none;
+}
+
+.interactive-focus:focus-visible {
+  outline: 2px solid var(--color-brand-700);
+  outline-offset: 2px;
+}
+
+.interactive-focus-inverse:focus-visible {
+  outline-color: #fff;
+}
+
+dialog::backdrop {
+  background: rgb(19 78 74 / 0.4);
+}
