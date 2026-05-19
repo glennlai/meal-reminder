@@ -86,7 +86,7 @@ export function HomePage() {
             Take a photo and set when you want to eat next.
           </p>
           <Link
-            to="/log"
+            to="/meal-reminder/log"
             className="interactive-focus mt-6 inline-block rounded-xl bg-brand-700 px-6 py-3 font-semibold text-white hover:bg-brand-800"
           >
             Log your first meal
@@ -98,7 +98,7 @@ export function HomePage() {
 
           {showPrimaryLogCta && (
             <Link
-              to="/log"
+              to="/meal-reminder/log"
               className="interactive-focus block w-full rounded-xl bg-brand-700 py-3.5 text-center text-lg font-semibold text-white hover:bg-brand-800"
             >
               Log next meal
@@ -109,7 +109,7 @@ export function HomePage() {
             <p className="text-center text-sm text-brand-700">
               Eating early?{" "}
               <Link
-                to="/log"
+                to="/meal-reminder/log"
                 className="interactive-focus font-semibold text-brand-800 underline"
               >
                 Log your next meal

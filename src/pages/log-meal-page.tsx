@@ -42,7 +42,7 @@ export function LogMealPage() {
     try {
       const resized = await resizePhoto(photoBlob);
       await logMeal({ photoBlob: resized, hoursToNextMeal: parsed });
-      navigate("/", {
+      navigate("/meal-reminder/home", {
         replace: true,
         state: {
           mealSaved: true,

@@ -9,10 +9,10 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="log" element={<LogMealPage />} />
-          <Route path="history" element={<HistoryPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route index path="/meal-reminder/home" element={<HomePage />} />
+          <Route path="/meal-reminder/log" element={<LogMealPage />} />
+          <Route path="/meal-reminder/history" element={<HistoryPage />} />
+          <Route path="*" element={<Navigate to="/meal-reminder/home" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>

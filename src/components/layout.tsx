@@ -2,9 +2,9 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { ScheduleProvider, useSchedule } from "@/context/schedule-provider";
 
 const nav = [
-  { to: "/", label: "Home" },
-  { to: "/log", label: "Log meal" },
-  { to: "/history", label: "History" },
+  { to: "/meal-reminder/home", label: "Home" },
+  { to: "/meal-reminder/log", label: "Log meal" },
+  { to: "/meal-reminder/history", label: "History" },
 ];
 
 function LayoutShell() {
@@ -34,7 +34,7 @@ function LayoutShell() {
         <div className="mx-auto grid max-w-lg grid-cols-3 gap-2 p-3">
           {nav.map((item) => {
             const active = pathname === item.to;
-            const showTimerDot = item.to === "/" && hasActiveTimer && !active;
+            const showTimerDot = item.to === "/meal-reminder/home" && hasActiveTimer && !active;
 
             return (
               <Link
