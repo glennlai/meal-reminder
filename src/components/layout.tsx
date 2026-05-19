@@ -1,64 +1,92 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
-import { ScheduleProvider, useSchedule } from "@/context/schedule-provider";
-
-const nav = [
-  { to: "/meal-reminder/home", label: "Home" },
-  { to: "/meal-reminder/log", label: "Log meal" },
-  { to: "/meal-reminder/history", label: "History" },
-];
+import { useState } from "react";
+import { Link, Outlet } from "react-router-dom";
+import { ScheduleProvider } from "@/context/schedule-provider";
 
 function LayoutShell() {
-  const { pathname } = useLocation();
-  const { schedule } = useSchedule();
-  const hasActiveTimer = !!schedule;
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="mx-auto flex min-h-dvh max-w-lg flex-col px-4 pt-[max(1rem,env(safe-area-inset-top))]">
+    <div
+      className="mx-auto flex min-h-dvh max-w-lg flex-col px-4 pt-[max(1rem,env(safe-area-inset-top))]"
+      onClick={() => setOpen(false)}
+    >
       <header className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-brand-900">
-          Meal Reminder
-        </h1>
+        <div className="flex items-center justify-between">
+          <Link
+            to="/"
+            className="group flex items-center gap-2 rounded-xl px-2 py-1 transition hover:bg-brand-50"
+          >
+            <h1 className="text-2xl font-bold tracking-tight text-brand-900">
+              Meal Reminder
+            </h1>
+
+            {/* subtle affordance */}
+            <span className="ml-1 text-sm text-brand-400 opacity-0 transition group-hover:opacity-100">
+              ↗
+            </span>
+          </Link>
+
+          <div
+            className="flex items-center gap-2 relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Link
+              to="/meal-reminder/add"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-xl font-bold text-white shadow-sm transition hover:scale-105 hover:bg-brand-700"
+            >
+              +
+            </Link>
+
+            <button
+              onClick={() => setOpen(!open)}
+              className="flex h-10 w-10 items-center justify-center rounded-full text-xl text-brand-900 transition hover:bg-brand-100 active:scale-95"
+            >
+              ⋮
+            </button>
+
+            {/* Dropdown */}
+            {open && (
+              <div className="absolute right-0 top-12 z-50 w-40 rounded-xl border border-brand-200 bg-white shadow-lg">
+
+                <Link
+                  to="/meal-reminder/history"
+                  className="block px-4 py-3 text-sm hover:bg-brand-50"
+                  onClick={() => setOpen(false)}
+                >
+                  History
+                </Link>
+
+                <Link
+                  to="/project/settings"
+                  className="block px-4 py-3 text-sm hover:bg-brand-50"
+                  onClick={() => setOpen(false)}
+                >
+                  Settings
+                </Link>
+
+                <Link
+                  to="/project/account"
+                  className="block px-4 py-3 text-sm hover:bg-brand-50"
+                  onClick={() => setOpen(false)}
+                >
+                  Account
+                </Link>
+
+              </div>
+            )}
+          </div>
+        </div>
+
         <p className="mt-1 text-sm text-brand-700/80">
           Log meals, count down to the next one
         </p>
+
       </header>
 
       <main className="flex-1 pb-[calc(5.5rem+env(safe-area-inset-bottom))]">
         <Outlet />
       </main>
 
-      <nav
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-brand-100 bg-brand-50/95 backdrop-blur-sm pb-[env(safe-area-inset-bottom)]"
-        aria-label="Main"
-      >
-        <div className="mx-auto grid max-w-lg grid-cols-3 gap-2 p-3">
-          {nav.map((item) => {
-            const active = pathname === item.to;
-            const showTimerDot = item.to === "/meal-reminder/home" && hasActiveTimer && !active;
-
-            return (
-              <Link
-                key={item.to}
-                to={item.to}
-                aria-current={active ? "page" : undefined}
-                className={`interactive-focus relative rounded-xl px-2 py-2.5 text-center text-sm font-medium transition ${
-                  active
-                    ? "interactive-focus-inverse bg-brand-700 text-white"
-                    : "bg-white text-brand-800 shadow-sm ring-1 ring-brand-100 hover:bg-brand-50"
-                }`}
-              >
-                {item.label}
-                {showTimerDot && (
-                  <span
-                    className="absolute right-2 top-2 h-2 w-2 rounded-full bg-amber-400 ring-2 ring-white"
-                    aria-label="Active meal timer"
-                  />
-                )}
-              </Link>
-            );
-          })}
-        </div>
-      </nav>
     </div>
   );
 }

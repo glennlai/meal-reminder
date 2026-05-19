@@ -11,12 +11,12 @@ import { OnboardingBanner } from "@/components/onboarding-banner";
 import { Toast } from "@/components/toast";
 import { useSchedule } from "@/context/schedule-provider";
 import { getReminderState } from "@/lib/schedule";
-import type { LogMealLocationState } from "@/pages/log-meal-page";
+import type { AddMealLocationState } from "@/pages/add-meal-page";
 
 export function HomePage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const navState = location.state as LogMealLocationState | null;
+  const navState = location.state as AddMealLocationState | null;
   const { schedule, loading, clearSchedule } = useSchedule();
   const [confirmClearOpen, setConfirmClearOpen] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
@@ -86,7 +86,7 @@ export function HomePage() {
             Take a photo and set when you want to eat next.
           </p>
           <Link
-            to="/meal-reminder/log"
+            to="/meal-reminder/add"
             className="interactive-focus mt-6 inline-block rounded-xl bg-brand-700 px-6 py-3 font-semibold text-white hover:bg-brand-800"
           >
             Log your first meal
@@ -98,7 +98,7 @@ export function HomePage() {
 
           {showPrimaryLogCta && (
             <Link
-              to="/meal-reminder/log"
+              to="/meal-reminder/add"
               className="interactive-focus block w-full rounded-xl bg-brand-700 py-3.5 text-center text-lg font-semibold text-white hover:bg-brand-800"
             >
               Log next meal
@@ -109,7 +109,7 @@ export function HomePage() {
             <p className="text-center text-sm text-brand-700">
               Eating early?{" "}
               <Link
-                to="/meal-reminder/log"
+                to="/meal-reminder/add"
                 className="interactive-focus font-semibold text-brand-800 underline"
               >
                 Log your next meal
