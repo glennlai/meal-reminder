@@ -5,7 +5,6 @@ import { VitePWA } from "vite-plugin-pwa";
 import path from "path";
 
 export default defineConfig({
-  base: "/meal-reminder/",
   plugins: [
     react(),
     tailwindcss(),
@@ -45,6 +44,7 @@ export default defineConfig({
       },
     }),
   ],
+  base: '/meal-reminder/',
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
