@@ -44,6 +44,7 @@ export default defineConfig({
       },
     }),
   ],
+  base: "/meal-reminder/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
